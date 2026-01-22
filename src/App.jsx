@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import "./App.css";
 import logo from "./assets/logo.png";
 
-const EMAIL = "kazenworksdigital@gmail.com";
+const EMAIL = "arazdigitalstudio@gmail.com";
 const IG_URL = "https://www.instagram.com/arazdigitalstudio/";
 const UPWORK_URL = "https://www.upwork.com/freelancers/~01e14df13c6a6ec131";
 
