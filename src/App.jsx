@@ -69,7 +69,7 @@ export default function App() {
             <h1 className="title">
               Complete &amp;<span className="titleGlow"> Elevate</span> your
               <br />
-              <span className="titleAccent">Web Platform</span>.
+              <span className="titleAccent">Web Platform</span>
             </h1>
 
             <p className="lead">
