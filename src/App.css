@@ -1,11 +1,10 @@
 /* =========================
-   ARAZ DIGITAL STUDIO — App.css (Clean Reset)
-   - Glass / Aurora background
-   - Conversion landing layout
-   - Mobile-first responsive
+   ARAZ DIGITAL STUDIO — App.css (FINAL / NO-ALT)
+   Theme: Obsidian + Aurora + Subtle Grid + Vignette
+   Goal: Strongest premium look (logo pops, conversion-ready)
    ========================= */
 
-/* ---- Reset ---- */
+/* ---------- Reset ---------- */
 *,
 *::before,
 *::after {
@@ -21,8 +20,6 @@ body {
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
     Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  color: #0c1020;
-  background: #f6f7fb;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -37,64 +34,86 @@ a {
   color: inherit;
 }
 
+p {
+  margin: 0;
+}
+
 ul {
   margin: 0;
   padding-left: 18px;
 }
 
-p {
-  margin: 0;
-}
-
-/* ---- Tokens ---- */
+/* ---------- Tokens ---------- */
 :root {
-  --ink: #0c1020;
-  --muted: rgba(12, 16, 32, 0.68);
-  --muted2: rgba(12, 16, 32, 0.56);
+  --bg0: #05060b;
+  --bg1: #070a12;
 
-  --glass: rgba(255, 255, 255, 0.56);
-  --stroke: rgba(20, 24, 40, 0.12);
+  --ink: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.72);
+  --muted2: rgba(255, 255, 255, 0.60);
 
-  --shadow: 0 18px 60px rgba(10, 16, 32, 0.12);
-  --shadow2: 0 10px 28px rgba(10, 16, 32, 0.1);
+  --glass: rgba(255, 255, 255, 0.085);
+  --stroke: rgba(255, 255, 255, 0.12);
 
-  --r: 28px;
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.52);
+  --shadow2: 0 12px 32px rgba(0, 0, 0, 0.42);
+
+  --r: 26px;
   --r2: 18px;
 
   --blue: #60a5fa;
   --violet: #8b5cf6;
+  --pink: #ec4899;
+  --cyan: #22d3ee;
+  --green: #22c55e;
 
-  --grad: linear-gradient(90deg, #2dd4ff, #8b5cf6, #22c55e);
+  --grad: linear-gradient(90deg, var(--cyan), var(--violet), var(--green));
 }
 
-/* ---- Page background ---- */
+/* ---------- Page (Background Power Stack) ---------- */
 .page {
   min-height: 100vh;
-  background:
-    radial-gradient(900px 600px at 15% 20%, #f7ecff, transparent 65%),
-    radial-gradient(900px 600px at 85% 10%, #eaf2ff, transparent 60%),
-    radial-gradient(900px 700px at 60% 90%, #ffe9d6, transparent 60%),
-    #f6f7fb;
   color: var(--ink);
+
+  /* Aurora layers */
+  background:
+    radial-gradient(1200px 720px at 18% 16%, rgba(139, 92, 246, 0.26), transparent 60%),
+    radial-gradient(1100px 680px at 82% 22%, rgba(96, 165, 250, 0.22), transparent 62%),
+    radial-gradient(980px 620px at 55% 92%, rgba(34, 197, 94, 0.14), transparent 62%),
+    radial-gradient(980px 620px at 45% 55%, rgba(236, 72, 153, 0.12), transparent 58%),
+    linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 40%, var(--bg0) 100%);
 }
 
-/* ---- Layout helpers ---- */
+/* Subtle grid overlay (masked to top/hero area) */
+.page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.28;
+
+  /* fade grid outward for premium feel */
+  mask-image: radial-gradient(720px 520px at 50% 12%, rgba(0, 0, 0, 0.95), transparent 74%);
+}
+
+/* Vignette for depth (stronger edges, focused center) */
+.page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(920px 640px at 50% 18%, transparent 40%, rgba(0, 0, 0, 0.62) 100%);
+}
+
+/* ---------- Layout helpers ---------- */
 .section {
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 38px 16px;
-}
-
-.glass {
-  background: var(--glass);
-  border: 1px solid var(--stroke);
-  border-radius: var(--r);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(12px);
-}
-
-.card {
-  padding: 18px;
+  padding: 42px 16px;
 }
 
 .sectionTitle {
@@ -102,7 +121,7 @@ p {
 }
 
 .h1 {
-  font-size: 44px;
+  font-size: 46px;
   line-height: 1.05;
   margin: 14px 0 10px;
   letter-spacing: -0.02em;
@@ -117,6 +136,7 @@ p {
 .lead {
   margin-top: 10px;
   font-size: 16px;
+  line-height: 1.55;
   color: var(--muted);
   max-width: 64ch;
 }
@@ -133,36 +153,87 @@ p {
   color: transparent;
 }
 
-/* ---- Header ---- */
+/* ---------- Glass system ---------- */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--stroke);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.card {
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* card inner glow edge */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(420px 240px at 18% 12%, rgba(34, 211, 238, 0.10), transparent 60%);
+  opacity: 0.9;
+}
+
+/* ---------- Header ---------- */
 .header {
   position: sticky;
   top: 10px;
   z-index: 50;
-  max-width: 1100px;
+
+  max-width: 1120px;
   margin: 10px auto 0;
   padding: 12px 14px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+
+  border-radius: 999px;
+}
+
+/* Slightly stronger header glass */
+.header.glass {
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 12px;
-  min-width: 220px;
+  min-width: 240px;
 }
 
+/* If you use an <img> for logo, give it this class:
+   <img className="logoImg" src={logo} alt="Araz Digital Studio" />
+*/
+.logoImg {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+
+/* Fallback if you still show text mark */
 .logoMark {
   width: 44px;
   height: 44px;
   border-radius: 14px;
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid var(--stroke);
-  font-weight: 900;
+
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-weight: 950;
   letter-spacing: -0.02em;
 }
 
@@ -173,16 +244,16 @@ p {
 }
 
 .brandName {
-  font-weight: 900;
+  font-weight: 950;
 }
 
 .brandTag {
   font-size: 12px;
-  color: var(--muted2);
+  color: rgba(255, 255, 255, 0.58);
   margin-top: 4px;
 }
 
-/* ---- Nav ---- */
+/* ---------- Nav ---------- */
 .nav {
   display: flex;
   align-items: center;
@@ -193,39 +264,55 @@ p {
 
 .nav a {
   text-decoration: none;
-  color: rgba(12, 16, 32, 0.78);
-  font-weight: 800;
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 850;
   font-size: 13px;
 }
 
-.navLink {
-  opacity: 0.88;
+.nav a:hover {
+  color: rgba(255, 255, 255, 0.95);
 }
 
-/* ---- Buttons ---- */
+.navLink {
+  opacity: 0.9;
+}
+
+/* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+
   padding: 10px 14px;
   border-radius: 999px;
-  border: 1px solid var(--stroke);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
   text-decoration: none;
-  font-weight: 900;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.55);
+  font-weight: 950;
+  color: rgba(255, 255, 255, 0.92);
+
+  background: rgba(255, 255, 255, 0.07);
   box-shadow: var(--shadow2);
+  backdrop-filter: blur(10px);
+
+  transform: translateY(0);
+  transition: transform 180ms ease, filter 180ms ease, opacity 180ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
 }
 
 .btnPrimary {
   background: linear-gradient(90deg, var(--blue), var(--violet));
-  color: white;
   border-color: transparent;
+  color: white;
 }
 
 .btnGhost {
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .btn.big {
@@ -238,24 +325,44 @@ p {
   margin-top: 14px;
 }
 
-/* ---- Hero ---- */
+/* ---------- Hero ---------- */
 .heroInner {
-  padding: 26px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hero spotlight glow (makes background feel “expensive”) */
+.heroInner::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(520px 280px at 14% 18%, rgba(34, 211, 238, 0.18), transparent 60%),
+    radial-gradient(520px 280px at 70% 18%, rgba(139, 92, 246, 0.18), transparent 60%),
+    radial-gradient(620px 340px at 50% 100%, rgba(34, 197, 94, 0.12), transparent 60%);
+  opacity: 1;
 }
 
 .pill {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+
   font-size: 12px;
   font-weight: 950;
   padding: 8px 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid var(--stroke);
+
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .heroActions {
+  position: relative;
   display: flex;
   gap: 10px;
   margin-top: 16px;
@@ -263,6 +370,7 @@ p {
 }
 
 .proofRow {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -274,11 +382,11 @@ p {
   font-weight: 950;
   padding: 8px 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid var(--stroke);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* ---- Grids ---- */
+/* ---------- Grids ---------- */
 .grid3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -297,11 +405,11 @@ p {
   gap: 12px;
 }
 
-/* ---- Cards ---- */
+/* ---------- Cards / Typography ---------- */
 .cardTag {
   font-size: 12px;
   font-weight: 950;
-  opacity: 0.76;
+  opacity: 0.78;
 }
 
 .cardTitle {
@@ -313,13 +421,13 @@ p {
 .cardDesc {
   color: var(--muted);
   margin-top: 8px;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .cardMeta {
   margin-top: 12px;
   font-size: 12px;
-  opacity: 0.7;
+  opacity: 0.72;
   font-weight: 850;
 }
 
@@ -335,8 +443,10 @@ p {
   font-weight: 950;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(34, 197, 94, 0.16);
-  border: 1px solid rgba(34, 197, 94, 0.25);
+
+  background: rgba(34, 197, 94, 0.14);
+  border: 1px solid rgba(34, 197, 94, 0.26);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .price {
@@ -345,7 +455,23 @@ p {
   margin: 10px 0 8px;
 }
 
-/* ---- Steps ---- */
+/* Lists inside pricing */
+.list {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.list li {
+  margin: 8px 0;
+}
+
+/* highlight most chosen card */
+.cardHot {
+  border-color: rgba(96, 165, 250, 0.35);
+  box-shadow: 0 28px 84px rgba(96, 165, 250, 0.14), var(--shadow);
+}
+
+/* ---------- Steps ---------- */
 .stepNum {
   width: 38px;
   height: 38px;
@@ -353,13 +479,27 @@ p {
   display: grid;
   place-items: center;
   font-weight: 1000;
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid var(--stroke);
+
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* ---- Final CTA ---- */
+/* ---------- Final CTA ---------- */
 .final {
   padding: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.final::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(520px 260px at 18% 18%, rgba(96, 165, 250, 0.16), transparent 60%),
+    radial-gradient(520px 260px at 82% 18%, rgba(139, 92, 246, 0.16), transparent 60%);
 }
 
 .contactGrid {
@@ -372,37 +512,47 @@ p {
 .contactCard {
   padding: 14px;
   text-decoration: none;
-  color: var(--ink);
+  color: rgba(255, 255, 255, 0.92);
   display: block;
+
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--r2);
+}
+
+.contactCard:hover {
+  filter: brightness(1.06);
 }
 
 .contactTitle {
   font-size: 12px;
   font-weight: 950;
-  opacity: 0.76;
+  opacity: 0.78;
 }
 
 .contactValue {
   font-weight: 950;
   margin-top: 6px;
+  opacity: 0.95;
 }
 
 .fine {
   font-size: 12px;
-  opacity: 0.7;
+  opacity: 0.75;
   font-weight: 850;
   margin-top: 10px;
 }
 
-/* ---- Footer ---- */
+/* ---------- Footer ---------- */
 .footer {
   text-align: center;
   padding: 26px 16px;
-  opacity: 0.7;
+  opacity: 0.72;
   font-weight: 850;
+  color: rgba(255, 255, 255, 0.72);
 }
 
-/* ---- Responsive ---- */
+/* ---------- Responsive ---------- */
 @media (max-width: 980px) {
   .grid4 {
     grid-template-columns: repeat(2, 1fr);
@@ -420,9 +570,21 @@ p {
     font-size: 36px;
   }
   .header {
-    gap: 10px;
+    border-radius: 22px;
   }
   .brand {
     min-width: unset;
+  }
+}
+
+@media (max-width: 520px) {
+  .section {
+    padding: 34px 14px;
+  }
+  .heroInner {
+    padding: 22px;
+  }
+  .nav a {
+    font-size: 12px;
   }
 }

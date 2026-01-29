@@ -1,11 +1,10 @@
-// Home.jsx (or App.jsx)
-// Minimal dependencies. Uses your existing glass/aurora background styles.
+import "./App.css";
+import logo from "./assets/logo.png";
 
-export default function Home() {
+export default function App() {
   return (
     <main className="page">
       <Header />
-
       <Hero />
 
       <section id="work" className="section">
@@ -25,10 +24,7 @@ export default function Home() {
       </section>
 
       <section id="process" className="section">
-        <SectionTitle
-          title="Process"
-          desc="Simple, fast, and transparent."
-        />
+        <SectionTitle title="Process" desc="Simple, fast, and transparent." />
         <Process />
       </section>
 
@@ -47,10 +43,13 @@ function Header() {
   return (
     <header className="header glass">
       <div className="brand">
-        <div className="logoMark">AD</div>
+        <div className="logoMark" aria-hidden="true">
+          <img className="logoImg" src={logo} alt="" />
+        </div>
+
         <div className="brandText">
           <div className="brandName">Araz Digital Studio</div>
-          <div className="brandTag">Web Design • Development • Brand</div>
+          <div className="brandTag">Web Design • Development • Brand Identity</div>
         </div>
       </div>
 
@@ -59,12 +58,24 @@ function Header() {
         <a href="#pricing">Pricing</a>
         <a href="#process">Process</a>
         <a href="#faq">FAQ</a>
-        <a className="navLink" href="https://www.freelancer.com/u/arazdigital" target="_blank" rel="noreferrer">
+
+        <a
+          className="navLink"
+          href="https://www.freelancer.com/u/arazdigital"
+          target="_blank"
+          rel="noreferrer"
+        >
           Freelancer
         </a>
-        <a className="navLink" href="https://instagram.com/arazdigitalstudio" target="_blank" rel="noreferrer">
+        <a
+          className="navLink"
+          href="https://instagram.com/arazdigitalstudio"
+          target="_blank"
+          rel="noreferrer"
+        >
           Instagram
         </a>
+
         <a className="btn btnPrimary" href="#contact">
           Request Demo →
         </a>
@@ -80,18 +91,22 @@ function Hero() {
         <div className="pill">24h Demo • Vercel Deploy • Premium UI</div>
 
         <h1 className="h1">
-          Premium one-page websites that convert —{" "}
+          High-converting one-page websites —{" "}
           <span className="grad">delivered in 48 hours.</span>
         </h1>
 
         <p className="lead">
-          Clean UI, modern UX, and launch-ready builds for small businesses and freelancers
-          who need leads — not “pretty pages”.
+          Clean UI, modern UX, and launch-ready builds for founders and small
+          businesses who need leads — not “pretty pages”.
         </p>
 
         <div className="heroActions">
-          <a className="btn btnPrimary" href="#contact">Request a 24h Demo →</a>
-          <a className="btn btnGhost" href="#work">View Work</a>
+          <a className="btn btnPrimary" href="#contact">
+            Get a 24h Demo →
+          </a>
+          <a className="btn btnGhost" href="#work">
+            View Work
+          </a>
         </div>
 
         <div className="proofRow">
@@ -119,7 +134,7 @@ function WorkGrid() {
     },
     {
       tag: "Website Redesign",
-      title: "Modern Legal Site Concept",
+      title: "Modern Legal Website Concept",
       desc: "Trust-first layout, service clarity, and strong CTA hierarchy.",
     },
   ];
@@ -131,7 +146,7 @@ function WorkGrid() {
           <div className="cardTag">{x.tag}</div>
           <h3 className="cardTitle">{x.title}</h3>
           <p className="cardDesc">{x.desc}</p>
-          <div className="cardMeta">Delivered fast • Clean handoff</div>
+          <div className="cardMeta">Fast delivery • Clean handoff</div>
         </article>
       ))}
     </div>
@@ -143,7 +158,7 @@ function Pricing() {
     {
       name: "Starter",
       price: "$149",
-      note: "For a clean one-pager that just works.",
+      note: "A clean one-pager that looks premium and works.",
       items: ["1 page", "Copy polish", "Mobile-first", "Vercel deploy", "48h delivery"],
     },
     {
@@ -151,12 +166,12 @@ function Pricing() {
       price: "$299",
       badge: "Most chosen",
       note: "Best value for lead-gen + credibility.",
-      items: ["1 page (optimized sections)", "Form + analytics", "SEO basics", "1 revision", "48h delivery"],
+      items: ["Optimized sections", "Form + analytics", "SEO basics", "1 revision", "48h delivery"],
     },
     {
       name: "Premium",
       price: "$499",
-      note: "When you want a stronger brand feel + speed.",
+      note: "Stronger brand feel + extra polish.",
       items: ["2 style variants", "Speed + performance pass", "Advanced polish", "Priority support", "72h delivery"],
     },
   ];
@@ -172,9 +187,13 @@ function Pricing() {
           <div className="price">{p.price}</div>
           <p className="cardDesc">{p.note}</p>
           <ul className="list">
-            {p.items.map((i) => <li key={i}>{i}</li>)}
+            {p.items.map((i) => (
+              <li key={i}>{i}</li>
+            ))}
           </ul>
-          <a className="btn btnPrimary full" href="#contact">Request Demo →</a>
+          <a className="btn btnPrimary full" href="#contact">
+            Request Demo →
+          </a>
         </article>
       ))}
     </div>
@@ -204,26 +223,11 @@ function Process() {
 
 function FAQ() {
   const q = [
-    {
-      a: "What do you need from me?",
-      b: "Your niche, the pages you need, and one reference site. That’s it.",
-    },
-    {
-      a: "Is the 24h demo free?",
-      b: "Yes — it’s a direction demo. If approved, we move into delivery.",
-    },
-    {
-      a: "How many revisions?",
-      b: "One focused revision in Pro/Premium. More can be added if needed.",
-    },
-    {
-      a: "Do you handle deployment?",
-      b: "Yes. Vercel deploy is included. Domain hookup available.",
-    },
-    {
-      a: "What if I don’t like it?",
-      b: "Then we stop after the demo. No drama, no wasted weeks.",
-    },
+    { a: "What do you need from me?", b: "Your niche, the pages you need, and one reference site. That’s it." },
+    { a: "Is the 24h demo free?", b: "Yes — it’s a direction demo. If approved, we move into delivery." },
+    { a: "How many revisions?", b: "One focused revision in Pro/Premium. More can be added if needed." },
+    { a: "Do you handle deployment?", b: "Yes. Vercel deploy is included. Domain hookup available." },
+    { a: "What if I don’t like it?", b: "Then we stop after the demo. No drama, no wasted weeks." },
   ];
 
   return (
@@ -275,11 +279,7 @@ function FinalCTA() {
 }
 
 function Footer() {
-  return (
-    <footer className="footer">
-      © 2026 Araz Digital Studio • Built with React + Vite
-    </footer>
-  );
+  return <footer className="footer">© 2026 Araz Digital Studio • Built with React + Vite</footer>;
 }
 
 function SectionTitle({ title, desc }) {
